@@ -140,7 +140,7 @@ uniq(names, uniqArr => console.log(`The new names array with all the duplicate i
 */
 
 // CODE HERE 
-
+const each = (arr, callback) => arr.forEach((na, i) => callback(na, i))
 
 /*
   Invoke the each function, passing in the names array and a callback function.
@@ -150,7 +150,7 @@ uniq(names, uniqArr => console.log(`The new names array with all the duplicate i
 */
 
 // CODE HERE
-
+each(names, (item, index) => `The item at index ${index} is ${item}`)
 
 ////////// PROBLEM 7 //////////
 
@@ -183,15 +183,21 @@ var users = [
 // Do not edit the code above.
 
 // CODE HERE 
-
+function getUserById(objArr, id, callback) {
+  for (let i = 0; i < objArr.length; i++) {
+    if (objArr[i].id === id) {
+      callback(objArr[i]);
+    }
+  }
+}
 
 // UNCOMMENT THE FUNCTION CALL BELOW
 // RUN THIS FILE WITH NODE
 // CHECK YOUR ANSWER
 
-// getUserById(users, '16t', user => {
-//   console.log('The user with the id 16t has the email of ' + user.email + ' the name of ' + user.name + ' and the address of ' + user.address) 
-// })
+getUserById(users, '16t', user => {
+  console.log('The user with the id 16t has the email of ' + user.email + ' the name of ' + user.name + ' and the address of ' + user.address) 
+})
 
 ////////// CHALLENGE //////////
 
@@ -211,6 +217,8 @@ var users = [
 
 // CODE HERE
 
+const addingFactory = x =>y => x + y
+
 /*
   Now that you have addingFactory, you can create other
   functions from it. 
@@ -224,7 +232,7 @@ var users = [
 */
 
 // CODE HERE
-
+const addTen = addingFactory(10)
 /*
   Now the inner function is stored in the addTen variable! 
 
@@ -236,7 +244,9 @@ var users = [
 */
 
 // CODE HERE
-
+let fifteen = addTen(5);
+let thirty_five = addTen(25);
+console.log(fifteen, thirty_five);
 /*
   Let's make another function from the addingFactory. 
 
@@ -249,3 +259,5 @@ var users = [
 */
 
 // CODE HERE
+const addEight = addingFactory(8)
+console.log(addEight(12))
